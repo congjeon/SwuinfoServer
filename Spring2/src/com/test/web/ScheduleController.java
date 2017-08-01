@@ -1,6 +1,7 @@
 package com.test.web;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.test.web.bean.MemberBean;
 import com.test.web.bean.ScheduleBean;
 import com.test.web.dao.ScheduleDao;
 
@@ -25,14 +27,14 @@ public class ScheduleController {
 		Map<String, Object> resMap = new HashMap<String, Object>();
 		
 		try {
-			ScheduleBean scBean=scheduleDao.scheduleProc(sBean);
+			List<ScheduleBean> list=scheduleDao.selectScheduleList(sBean);
 			
-			if(scBean==null) {
+			if(list==null) {
 				resMap.put("result", "fail");
-				resMap.put("resultMsg", "해당하는 유저가 없습니다. \n 아이디와 비밀번호를 확인해주세요.");
+				resMap.put("resultMsg", "��簡 �����ϴ�.");
 			}else {
 				resMap.put("result", "ok");
-				resMap.put("scheduleBean", scBean);
+				resMap.put("scheduleBean", list);
 			}
 
 		}catch(Exception e){

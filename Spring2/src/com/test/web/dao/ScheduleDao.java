@@ -1,9 +1,12 @@
 package com.test.web.dao;
 
+import java.util.List;
+
+import com.test.web.bean.MemberBean;
 import com.test.web.bean.ScheduleBean;
 
 public interface ScheduleDao {
-	/*schedule ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°*/
-    public ScheduleBean scheduleProc(ScheduleBean bean);
+	/*¿ùÇà»ç Ãâ·Â*/
+    public List<ScheduleBean> selectScheduleList(ScheduleBean sBean);
 
 }

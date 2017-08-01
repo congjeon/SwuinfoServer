@@ -4,7 +4,7 @@
 <mapper namespace="com.test.web.dao.ScheduleDao">
 	
 	<!-- 날짜에 해당하는 데이터 반환 -->
-	<select id="ScheduleProc" parameterType="scheduleBean" resultType="scheduleBean">
+	<select id="selectScheduleList" parameterType="scheduleBean" resultType="scheduleBean">
 	 SELECT
 	 YEAR AS year,
 	 MONTH AS month,
