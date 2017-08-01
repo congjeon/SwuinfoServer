@@ -1,0 +1,46 @@
+package com.test.web;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.test.web.bean.ScheduleBean;
+import com.test.web.dao.ScheduleDao;
+
+@Controller
+public class ScheduleController {
+	
+	@Autowired
+	private ScheduleDao scheduleDao;
+	
+	
+	@RequestMapping("/rest/ScheduleProc")
+	@ResponseBody
+	public Map<String, Object> ScheduleProc(ScheduleBean sBean){
+		
+		Map<String, Object> resMap = new HashMap<String, Object>();
+		
+		try {
+			ScheduleBean scBean=scheduleDao.scheduleProc(sBean);
+			
+			if(scBean==null) {
+				resMap.put("result", "fail");
+				resMap.put("resultMsg", "해당하는 유저가 없습니다. \n 아이디와 비밀번호를 확인해주세요.");
+			}else {
+				resMap.put("result", "ok");
+				resMap.put("scheduleBean", scBean);
+			}
+
+		}catch(Exception e){
+			e.printStackTrace();
+			resMap.put("result","fail");
+		}
+		return resMap;
+	}
+	
+
+}
