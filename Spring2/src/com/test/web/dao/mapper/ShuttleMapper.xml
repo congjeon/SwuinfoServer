@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.test.web.dao.ShuttleDao">
+
+<!-- 셔틀 아저씨 접속해서 위치 업데이트 -->
+	<update id="updateShuttleLocation" parameterType="shuttleBean">
+	UPDATE shuttle
+	SET
+		LATITUDE=#{latitude},
+		LONGITUDE=#{longitude}
+	WHERE
+		USER_ID=#{userId}
+	</update>
+	
+	<!-- 버스별 위치 정보 가져오기 -->
+	<select id="selectShuttleLocation" parameterType="shuttleBean" resultType="shuttle">
+	SELECT
+	 USER_ID AS userId,
+	 LATITUDE AS latitude,
+	 LONGITUDE AS longitude
+	 from shuttle 
+	 where USER_ID=#{userId} AND
+	</select>
+</mapper>
